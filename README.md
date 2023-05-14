@@ -19,7 +19,7 @@ yarn add github-folder-tree
 To use `github-folder-tree`, import it into your React component:
 
 ```javascript
-import useGitHubFolderTree from 'github-folder-tree';
+import {useGitHubFolderTree} from 'github-folder-tree';
 ```
 
 **repositoryUrl** is the URL of the GitHub repository, and **apiKey** is an optional GitHub API key for authentication.
@@ -32,7 +32,7 @@ const { repoFiles, error, log, fetchRepositoryContents } = useGitHubFolderTree(r
 
 ```javascript
 import { useState } from 'react';
-import useGitHubFolderTree from 'github-folder-tree';
+import {useGitHubFolderTree} from 'github-folder-tree';
 
 const MyComponent = () => {
   const [repositoryUrl, setRepositoryUrl] = useState('');
