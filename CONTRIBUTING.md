@@ -20,7 +20,7 @@ Please ensure that your code follows the established code style and conventions 
 
 ## Reporting Issues
 
-If you encounter any issues while using or contributing to GitHub Folder Tree, please open an issue on the [github-folder-tree](https://github.com/[your-username]/[project-name]/issues). Provide detailed information about the problem, including steps to reproduce it, error messages (if applicable), and any other relevant information.
+If you encounter any issues while using or contributing to GitHub Folder Tree, please open an issue on the [github-folder-tree issues](https://github.com/sauravhathi/github-folder-tree/issues/new/choose). Provide detailed information about the problem, including steps to reproduce it, error messages (if applicable), and any other relevant information.
 
 ## Pull Requests
 
