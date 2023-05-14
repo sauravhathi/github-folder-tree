@@ -1,45 +1,54 @@
 {
-  "name": "github-folder-tree",
-  "version": "1.0.0",
-  "description": "github-folder-tree is a React custom hook that allows you to fetch and process the contents of a GitHub folder. It retrieves information about the files and subfolders in the specified folder, including their names, file types, download URLs, SHA hashes, sizes, and paths.",
-  "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/your-username/your-repository.git"
-  },
-  "keywords": [
-    "github",
-    "folder",
-    "tree",
-    "repository",
-    "github-api",
-    "contents",
-    "fetch",
-    "download",
-    "npm",
-    "package",
-    "git-api"
-  ],
-  "author": "Saurav Hathi",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sauravhathi/github-repository-downloader/issues"
-  },
-  "homepage": "https://github.com/sauravhathi/github-repository-downloader#readme",
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "@types/react": "^18.2.6",
-    "axios": "^1.4.0",
-    "typescript": "^5.0.4"
-  },
-  "devDependencies": {
-    "@types/axios": "^0.14.0",
-    "ts-loader": "^9.4.2"
-  }
+    "name": "github-folder-tree",
+    "version": "1.0.0",
+    "description": "github-folder-tree is a React custom hook that allows you to fetch and process the contents of a GitHub folder. It retrieves information about the files and subfolders in the specified folder, including their names, file types, download URLs, SHA hashes, sizes, and paths.",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "rm -rf dist/ && prettier --write src/ && npm run build:esm && npm run build:cjs",
+        "build:esm": "tsc",
+        "build:cjs": "tsc --module commonjs --outDir dist/cjs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/your-username/your-repository.git"
+    },
+    "keywords": [
+        "github",
+        "folder",
+        "tree",
+        "repository",
+        "github-api",
+        "contents",
+        "fetch",
+        "download",
+        "npm",
+        "package",
+        "git-api"
+    ],
+    "author": "Saurav Hathi",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sauravhathi/github-repository-downloader/issues"
+    },
+    "homepage": "https://github.com/sauravhathi/github-repository-downloader#readme",
+    "devDependencies": {
+        "@types/node": "^20.1.4",
+        "@types/react": "^18.2.6",
+        "@types/react-dom": "^18.2.4",
+        "axios": "^1.4.0",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "prettier": "2.8.8",
+        "typescript": "^5.0.4"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "dependencies": {
+        "axios": "^1.4.0"
+    }
 }
