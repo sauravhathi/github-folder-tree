@@ -1,5 +1,7 @@
 {
-  "name": "demo",
+  "name": "github-folder-tree",
+  "author": "Saurav Hathi",
+  "description": "github-folder-tree is a React custom hook that allows you to fetch and process the contents of a GitHub folder. It retrieves information about the files and subfolders in the specified folder, including their names, file types, download URLs, SHA hashes, sizes, and paths.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,15 +10,39 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sauravhathi/github-folder-tree.git"
+  },
+  "keywords": [
+    "github",
+    "folder",
+    "tree",
+    "repository",
+    "github-api",
+    "contents",
+    "fetch",
+    "download",
+    "npm",
+    "package",
+    "git-api"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sauravhathi/github-folder-tree/issues/new/choose"
+  },
+  "homepage": "https://github.com/sauravhathi/github-folder-tree/tree/demo",
   "dependencies": {
     "@types/node": "20.1.4",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
+    "github-folder-tree": "^1.0.3",
     "next": "13.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sass": "^1.62.1",
     "typescript": "5.0.4"
   }
 }
