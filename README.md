@@ -4,7 +4,7 @@ github-folder-tree is a React custom hook that allows you to fetch and process t
 
 ## Demo
 
-### [https://sauravhathi.github.io/github-folder-tree/](https://sauravhathi.github.io/github-folder-tree/)
+### [https://github-folder-tree.vercel.app/](https://github-folder-tree.vercel.app/)
 
 ## Screenshots
 
