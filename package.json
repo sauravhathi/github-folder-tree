@@ -1,0 +1,39 @@
+{
+  "name": "github-folder-tree",
+  "version": "1.0.0",
+  "description": "github-folder-tree is a React custom hook that allows you to fetch and process the contents of a GitHub folder. It retrieves information about the files and subfolders in the specified folder, including their names, file types, download URLs, SHA hashes, sizes, and paths.",
+  "main": "useGitHubFolderTree.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sauravhathi/github-repository-downloader.git"
+  },
+  "keywords": [
+    "github",
+    "folder",
+    "tree",
+    "repository",
+    "github-api",
+    "contents",
+    "fetch",
+    "download",
+    "npm",
+    "package",
+    "git-api"
+  ],
+  "author": "Saurav Hathi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sauravhathi/github-repository-downloader/issues"
+  },
+  "homepage": "https://github.com/sauravhathi/github-repository-downloader#readme",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "typescript": "^5.0.4"
+  }
+}
