@@ -124,7 +124,7 @@ When contributing to this project, please ensure that your changes are [well-doc
 
 ## Reporting Issues 🐛
 
-If you encounter any issues with github-folder-tree, please open an issue on the GitHub repository. Provide detailed information about the problem, including steps to reproduce it, error messages (if applicable), and any other relevant information.
+If you encounter any issues with github-folder-tree, please open an issue on the [GitHub Repository](https://github.com/sauravhathi/github-folder-tree/issues/new/choose). Provide detailed information about the problem, including steps to reproduce it, error messages (if applicable), and any other relevant information.
 
 ## Acknowledgments 🙏
 

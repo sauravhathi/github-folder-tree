@@ -94,7 +94,7 @@ export const useGitHubFolderTree = (folderUrl: string, apiKey?: string) => {
       const repo = matches[2]
       const branch = matches[3]
       const dir = matches[4]
-      console.log(user, repo, branch, dir)
+
       setLog(`Extracted user: ${user}, repo: ${repo}, branch: ${branch}, dir: ${dir}`)
 
       const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${dir}?ref=${branch}`
@@ -106,7 +106,6 @@ export const useGitHubFolderTree = (folderUrl: string, apiKey?: string) => {
       setRepoFiles(prevFiles => [...prevFiles, ...processedFiles].filter(Boolean) as RepoFile[])
     } catch (error: any) {
       setError(error.response?.data?.message || 'An error occurred')
-      console.error(`Error: ${error}`)
     }
   }
 
