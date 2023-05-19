@@ -14,63 +14,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useGitHubFolderTree = void 0;
 const react_1 = require("react");
-const axios_1 = __importDefault(require("axios"));
+const jszip_1 = __importDefault(require("jszip"));
+const file_saver_1 = __importDefault(require("file-saver"));
+const apiUtils_1 = require("../utils/apiUtils");
+const zipUtils_1 = require("../utils/zipUtils");
 const useGitHubFolderTree = (folderUrl, apiKey) => {
     const [repoFiles, setRepoFiles] = (0, react_1.useState)([]);
+    const [repoInfo, setRepoInfo] = (0, react_1.useState)({
+        user: '',
+        repo: '',
+        branch: '',
+        dir: '',
+    });
+    const { repo, branch, dir } = repoInfo;
     const [error, setError] = (0, react_1.useState)('');
     const [log, setLog] = (0, react_1.useState)('');
-    const fetchFolderData = (folderUrl) => __awaiter(void 0, void 0, void 0, function* () {
-        const contentIndex = folderUrl.indexOf('contents/') + 'contents/'.length;
-        const decodedUrl = decodeURIComponent(contentIndex > 0 ? folderUrl.substring(contentIndex) : folderUrl);
-        setLog(`Fetching data from ${decodedUrl}`);
-        const options = {};
-        if (apiKey) {
-            options.headers = {
-                Authorization: `Bearer ${apiKey}`,
-            };
-        }
-        const { data: response } = yield axios_1.default.get(folderUrl, options);
-        setLog(`Data fetched from ${decodedUrl}`);
-        return response;
-    });
-    const processFolderContents = (folder) => __awaiter(void 0, void 0, void 0, function* () {
-        const filePromises = folder.map((item) => __awaiter(void 0, void 0, void 0, function* () {
-            if (item.type === 'file') {
-                setLog(`Processing ${item.name}`);
-                const extension = item.name.split('.').pop() || 'unknown';
-                const sizeInKB = Math.round(parseInt(item.size) / 1024);
-                let size;
-                if (sizeInKB >= 1024) {
-                    const sizeInMB = (sizeInKB / 1024).toFixed(2);
-                    size = sizeInMB + ' MB';
-                }
-                else {
-                    size = sizeInKB + ' KB';
-                }
-                return {
-                    name: item.name,
-                    file_type: extension,
-                    download_url: item.download_url,
-                    sha: item.sha,
-                    size: size,
-                    path: item.path,
-                };
-            }
-            else if (item.type === 'dir') {
-                setLog(`Processing ${item.name}`);
-                const subFolder = yield fetchFolderData(item.url);
-                setLog(`Subfolder data fetched from ${item.url}`);
-                const subFolderFiles = yield processFolderContents(subFolder);
-                setLog(`Processed ${item.name}`);
-                return subFolderFiles;
-            }
-            return null;
-        }));
-        const files = yield Promise.all(filePromises);
-        const flattenedFiles = files.flat();
-        setLog('Processing complete');
-        return flattenedFiles.filter(Boolean);
-    });
     const fetchRepositoryContents = () => __awaiter(void 0, void 0, void 0, function* () {
         var _a, _b;
         try {
@@ -87,24 +45,44 @@ const useGitHubFolderTree = (folderUrl, apiKey) => {
             const user = matches[1];
             const repo = matches[2];
             const branch = matches[3];
-            const dir = matches[4];
+            const dir = matches[4] || '';
+            setRepoInfo({ user, repo, branch, dir });
             setLog(`Extracted user: ${user}, repo: ${repo}, branch: ${branch}, dir: ${dir}`);
             const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${dir}?ref=${branch}`;
             setLog(`Fetching repository contents from ${apiUrl}`);
-            const folderData = yield fetchFolderData(apiUrl);
+            const folderData = yield (0, apiUtils_1.fetchFolderData)(apiUrl, setError, setLog, apiKey);
             setLog('Folder data fetched');
-            const processedFiles = yield processFolderContents(folderData);
+            const processedFiles = yield (0, apiUtils_1.processFolderContents)(folderData, setError, setLog, dir, apiKey);
             setRepoFiles(prevFiles => [...prevFiles, ...processedFiles].filter(Boolean));
         }
         catch (error) {
-            setError(((_b = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.message) || 'An error occurred');
+            setError((_b = (_a = error.response) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.message);
+        }
+    });
+    const useGitHubFolderDownload = () => __awaiter(void 0, void 0, void 0, function* () {
+        if (repoFiles.length === 0) {
+            setError('No repository files available');
+            return;
+        }
+        try {
+            const zip = new jszip_1.default();
+            yield (0, zipUtils_1.generateZip)(zip, repoFiles, setError, setLog);
+            const zipBlob = yield zip.generateAsync({ type: 'blob' });
+            const fileName = dir ? dir.split('/').pop() : `${repo}-${branch}`;
+            console.log(fileName);
+            file_saver_1.default.saveAs(zipBlob, fileName);
+        }
+        catch (error) {
+            setError('An error occurred while creating the ZIP file');
         }
     });
     return {
         repoFiles,
+        fetchRepositoryContents,
+        useGitHubFolderDownload,
         error,
         log,
-        fetchRepositoryContents,
+        repoInfo,
     };
 };
 exports.useGitHubFolderTree = useGitHubFolderTree;
