@@ -1,17 +1,9 @@
-interface RepoFile {
-    url: string;
-    name: string;
-    file_type: string;
-    download_url: string;
-    sha: string;
-    size: string;
-    path: string;
-    type?: string;
-}
+import { RepoFile, RepoInfo } from '../types';
 export declare const useGitHubFolderTree: (folderUrl: string, apiKey?: string) => {
     repoFiles: RepoFile[];
+    fetchRepositoryContents: () => Promise<void>;
+    useGitHubFolderDownload: () => Promise<void>;
     error: string;
     log: string;
-    fetchRepositoryContents: () => Promise<void>;
+    repoInfo: RepoInfo;
 };
-export {};

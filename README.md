@@ -1,6 +1,6 @@
 # GitHub Folder Tree 🌲
 
-**github-folder-tree** is a React custom hook that allows you to fetch and process the contents of a GitHub folder. It retrieves information about the files and subfolders in the specified folder, including their names, file types, download URLs, SHA hashes, sizes, and paths.
+**github-folder-tree** is a React custom hook that allows you to fetch and process the contents of a GitHub folder. It retrieves information about the files and subfolders in the specified folder, including their names, file types, download URLs, SHA hashes, sizes, and paths. In addition, it provides the functionality to download the contents of the folder as a ZIP file and access repository information.
 
 ## Installation ⬇️
 
@@ -25,29 +25,39 @@ import {useGitHubFolderTree} from 'github-folder-tree';
 **repositoryUrl** is the URL of the GitHub repository, and **apiKey** is an optional GitHub API key for authentication.
 
 ```jsx
-const { repoFiles, error, log, fetchRepositoryContents } = useGitHubFolderTree(repositoryUrl, apiKey);
+const { repoFiles, error, log, fetchRepositoryContents, useGitHubFolderDownload, repoInfo } = useGitHubFolderTree(folderUrl, apiKey);
 ```
 
 ### Example
 
 ```javascript
-import { useState } from 'react';
-import {useGitHubFolderTree} from 'github-folder-tree';
+import React, { FC, useState } from 'react';
+import useGitHubFolderTree from './hooks/useGitHubFolderTree';
 
 const MyComponent = () => {
-  const [repositoryUrl, setRepositoryUrl] = useState('');
+  const [folderUrl, setFolderUrl] = useState('');
   const [apiKey, setApiKey] = useState('');
-  const { repoFiles, error, log, fetchRepositoryContents } = useGitHubFolderTree(repositoryUrl, apiKey);
+  const { repoFiles, error, log, fetchRepositoryContents, useGitHubFolderDownload, repoInfo } = useGitHubFolderTree(folderUrl, apiKey);
 
   const handleFetchClick = () => {
     fetchRepositoryContents();
   };
 
+  const handleDownloadClick = () => {
+    useGitHubFolderDownload();
+  };
+
+  if (repoFiles.length > 0) {
+    console.log(repoFiles);
+    console.log(repoInfo);
+  }
+
   return (
     <div>
-      <input type="text" value={repositoryUrl} onChange={(e) => setRepositoryUrl(e.target.value)} placeholder="Enter GitHub repository URL" />
+      <input type="text" value={folderUrl} onChange={(e) => setFolderUrl(e.target.value)} placeholder="Enter GitHub folder URL" />
       <input type="text" value={apiKey} onChange={(e) => setApiKey(e.target.value)} placeholder="Enter GitHub API key (optional)" />
       <button onClick={handleFetchClick}>Fetch Folder Contents</button>
+      <button onClick={handleDownloadClick}>Download Folder as ZIP</button>
       {error && <div>Error: {error}</div>}
       {log && <div>Log: {log}</div>}
       <table>
@@ -77,7 +87,11 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
-In the above example, **repositoryUrl** is the URL of the GitHub repository, and **apiKey** is an optional GitHub API key for authentication.
+In the above example, **folderUrl** is the URL of the GitHub folder, and **apiKey** is an optional GitHub API key for authentication.
+
+To fetch the contents of a GitHub folder, enter the folder URL in the input field and click **Fetch Folder Contents**. The files and their details will be displayed in a table. Any errors or log messages will be shown accordingly.
+
+To download the folder as a ZIP file, click the **Download Folder as ZIP** button. The ZIP file will be generated and downloaded.
 
 To fetch the contents of the root folder of a repository, use the repository URL in the following format:
 
@@ -109,14 +123,14 @@ Note: Make sure to handle any errors and display them appropriately in your Reac
 
 #### X-Ratelimit-Limit: 60
 
-<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/a0896f79-da0e-43af-a7db-230ad27fa5a4" alt="image" width="500px" height="auto" />
+<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/de10a672-ef74-4388-837d-d165368ec640" alt="image" width="500px" height="auto" />
 
 #### API rate limit exceeded
-<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/6193d3e7-978c-4c66-b54d-26bf582c2cdb" alt="image" width="500px" height="auto" />
+<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/5dcd4868-8e2e-4b10-8fd9-a8af788f412d" alt="image" width="500px" height="auto" />
 
 #### Using Github API Key(Personal access tokens) - X-Ratelimit-Limit: 5000
 
-<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/38c7453c-b920-446e-90e3-9f41bd7df542" alt="image" width="500px" height="auto" />
+<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/db552e41-c41d-44b7-b010-4e24a86a6388" alt="image" width="500px" height="auto" />
 
 ## Hook Reference 📚
 
@@ -128,6 +142,9 @@ The **useGitHubFolderTree** hook returns the following values:
 | **error** | **string** | An error message if an error occurred during the fetch. |
 | **log** | **string** | Log messages for tracking progress and debugging. |
 | **fetchRepositoryContents** | **function** | A function that fetches the contents of the specified GitHub folder. |
+| **useGitHubFolderDownload** | **function** | A function that downloads the contents of the specified GitHub folder as a ZIP file. |
+| **repoInfo** | **RepoInfo** | An object containing information about the GitHub repository. |
+
 
 ## Contributing 🤝
 
