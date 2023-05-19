@@ -12,11 +12,11 @@ github-folder-tree is a React custom hook that allows you to fetch and process t
 
 #### X-Ratelimit-Limit: 60
 
-<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/a0896f79-da0e-43af-a7db-230ad27fa5a4" alt="image" width="500px" height="auto" />
+<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/de10a672-ef74-4388-837d-d165368ec640" alt="image" width="500px" height="auto" />
 
 #### API rate limit exceeded
-<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/6193d3e7-978c-4c66-b54d-26bf582c2cdb" alt="image" width="500px" height="auto" />
+<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/5dcd4868-8e2e-4b10-8fd9-a8af788f412d" alt="image" width="500px" height="auto" />
 
 #### Using Github API Key(Personal access tokens) - X-Ratelimit-Limit: 5000
 
-<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/38c7453c-b920-446e-90e3-9f41bd7df542" alt="image" width="500px" height="auto" />
+<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/db552e41-c41d-44b7-b010-4e24a86a6388" alt="image" width="500px" height="auto" />

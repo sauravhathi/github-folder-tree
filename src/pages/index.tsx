@@ -12,6 +12,27 @@ interface RepoFile {
   path: string;
 }
 
+interface ButtonContainerProps {
+  onFetchRepositoryContents: () => void;
+  onUseGitHubFolderDownload: () => void;
+}
+
+const ButtonContainer: FC<ButtonContainerProps> = ({
+  onFetchRepositoryContents,
+  onUseGitHubFolderDownload,
+}) => {
+  return (
+    <div className="button-container">
+      <button onClick={onFetchRepositoryContents} className="github-url-button">
+        Fetch
+      </button>
+      <button onClick={onUseGitHubFolderDownload} className="github-url-button">
+        Download as ZIP
+      </button>
+    </div>
+  );
+};
+
 interface FileItemProps {
   file: RepoFile;
 }
@@ -27,7 +48,7 @@ const FileItem: FC<FileItemProps> = ({ file }) => {
         <div className="file-item__size">{size}</div>
         <div className="file-item__sha">{sha}</div>
         <div className="file-item__download">
-          <a href={download_url} download={name}>
+          <a href={download_url} download={name} target="_blank">
             <button>Download</button>
           </a>
         </div>
@@ -39,10 +60,18 @@ const FileItem: FC<FileItemProps> = ({ file }) => {
 const GitHubFolderTree: FC = () => {
   const [folderUrl, setFolderUrl] = useState<string>('');
   const [apiKey, setApiKey] = useState<string>('');
-  const { repoFiles, error, log, fetchRepositoryContents } = useGitHubFolderTree(folderUrl, apiKey);
+  const {
+    repoFiles,
+    fetchRepositoryContents,
+    useGitHubFolderDownload,
+    error,
+    log,
+    repoInfo
+  } = useGitHubFolderTree(folderUrl, apiKey);
 
   if (repoFiles.length > 0) {
     console.log(repoFiles);
+    console.log(repoInfo);
   }
 
   return (
@@ -70,12 +99,10 @@ const GitHubFolderTree: FC = () => {
             placeholder="Increase GitHub API rate limit by entering GitHub API key"
           /> : null
       }
-      <button
-        onClick={fetchRepositoryContents}
-        className="github-url-button"
-      >
-        Fetch
-      </button>
+      <ButtonContainer
+        onFetchRepositoryContents={fetchRepositoryContents}
+        onUseGitHubFolderDownload={useGitHubFolderDownload}
+      />
       {(error && repoFiles.length === 0) && <div className="error">{error}</div>}
       {log && <div className="log">{log}</div>}
       {repoFiles.length === 0 ? null : (

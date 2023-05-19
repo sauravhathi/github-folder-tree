@@ -28,17 +28,26 @@ body {
       color: #fff;
     }
 
-    .github-url-button {
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
       margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      background: #39f;
-      color: #fff;
-      cursor: pointer;
-      outline: none;
-      align-self: flex-end;
-      font-size: 16px;
+
+      .github-url-button {
+        margin-left: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background: #39f;
+        color: #fff;
+        cursor: pointer;
+        outline: none;
+        font-size: 16px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
     }
 
     .error {
