@@ -32,7 +32,7 @@ const { repoFiles, error, log, fetchRepositoryContents, useGitHubFolderDownload,
 
 ```javascript
 import React, { FC, useState } from 'react';
-import useGitHubFolderTree from './hooks/useGitHubFolderTree';
+import { useGitHubFolderTree } from 'github-folder-tree';
 
 const MyComponent = () => {
   const [folderUrl, setFolderUrl] = useState('');
