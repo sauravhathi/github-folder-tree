@@ -1,6 +1,6 @@
 {
     "name": "github-folder-tree",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "github-folder-tree is a React custom hook that allows you to fetch and process the contents of a GitHub folder. It retrieves information about the files and subfolders in the specified folder, including their names, file types, download URLs, SHA hashes, sizes, and paths.",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
