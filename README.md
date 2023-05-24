@@ -123,7 +123,7 @@ Note: Make sure to handle any errors and display them appropriately in your Reac
 
 #### X-Ratelimit-Limit: 60
 
-<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/de10a672-ef74-4388-837d-d165368ec640" alt="image" width="500px" height="auto" />
+<img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/7a442222-2095-4c0d-9a61-a6bb5e3a4887" alt="image" width="500px" height="auto" />
 
 #### API rate limit exceeded
 <img src="https://github.com/sauravhathi/github-folder-tree/assets/61316762/5dcd4868-8e2e-4b10-8fd9-a8af788f412d" alt="image" width="500px" height="auto" />
