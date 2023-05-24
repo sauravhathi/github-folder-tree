@@ -1,3 +1,8 @@
+$button-bg-color: #264eff;
+$button-text-color: #ffffff;
+$button-hover-bg-color: #3056fe;
+$color-primary: white;
+
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +11,7 @@
 
 body {
   background: #f5f5f5;
-  font-family: "Roboto", sans-serif;
+  font-family: "Inconsolata", monospace;
 
   .github-folder-data {
     max-width: 800px;
@@ -15,8 +20,35 @@ body {
     background: linear-gradient(to right, #1d1d2c, #2e2e42);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    color: #fff;
-    font-family: "Roboto", sans-serif;
+    color: $color-primary;
+    
+
+    .title-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .title {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        font-weight: bold;
+
+        .contributions-icon {
+          margin-right: 10px;
+          font-size: 28px;
+        }
+
+        .title-link {
+          color: $color-primary;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
 
     .github-url-input {
       width: 100%;
@@ -25,7 +57,9 @@ body {
       border-radius: 5px;
       outline: none;
       background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      color: $color-primary;
+      font-size: 16px;
+      font-family: "Inconsolata", monospace;
     }
 
     .button-container {
@@ -38,14 +72,23 @@ body {
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
-        background: #39f;
-        color: #fff;
+        background: $button-bg-color;
+        color: $button-text-color;
         cursor: pointer;
         outline: none;
         font-size: 16px;
+        font-family: "Inconsolata", monospace;
+        font-weight: bold;
+        letter-spacing: 1.5px;
 
         &:first-child {
           margin-left: 0;
+        }
+
+        &:hover,
+        &:focus {
+          background: $button-hover-bg-color;
+          color: $button-text-color;
         }
       }
     }
@@ -76,7 +119,7 @@ body {
       }
 
       &::-webkit-scrollbar-thumb {
-        background: #39f;
+        background: $button-bg-color;
       }
     }
 
@@ -116,7 +159,7 @@ body {
         text-align: right;
 
         a {
-          color: #39f;
+          color: $button-bg-color;
           text-decoration: none;
 
           &:hover {
@@ -128,12 +171,15 @@ body {
           padding: 10px 20px;
           border: none;
           border-radius: 5px;
-          background: #39f;
-          color: #fff;
+          background: $button-bg-color;
+          color: $button-text-color;
           cursor: pointer;
           outline: none;
           align-self: flex-end;
           font-size: 14px;
+          font-family: "Inconsolata", monospace;
+          font-weight: bold;
+          letter-spacing: 1.5px;
         }
       }
     }
